@@ -40,85 +40,114 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
+  /* AileronMD palette
+     Medical Navy   #1A3A52  -> oklch(0.339 0.057 244)
+     Surgical Teal  #0D7377  -> oklch(0.500 0.080 197)
+     Clinical Aqua  #14919B  -> oklch(0.598 0.094 200)
+     Mist           #F5F8FA  background
+     Slate Ink      #1F2A37  body text
+  */
+  --radius: 0.625rem;
+
+  --background: oklch(0.992 0.002 240);
+  --foreground: oklch(0.230 0.020 250);
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
+  --card-foreground: oklch(0.230 0.020 250);
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
+  --popover-foreground: oklch(0.230 0.020 250);
+
+  --primary: oklch(0.339 0.057 244);          /* Medical Navy */
+  --primary-foreground: oklch(0.985 0.005 240);
+
+  --secondary: oklch(0.965 0.010 220);
+  --secondary-foreground: oklch(0.339 0.057 244);
+
+  --muted: oklch(0.965 0.008 230);
+  --muted-foreground: oklch(0.500 0.020 240);
+
+  --accent: oklch(0.500 0.080 197);            /* Surgical Teal */
+  --accent-foreground: oklch(0.985 0.005 200);
+
+  --destructive: oklch(0.577 0.215 27);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+
+  --border: oklch(0.918 0.008 230);
+  --input: oklch(0.918 0.008 230);
+  --ring: oklch(0.500 0.080 197);
+
+  --chart-1: oklch(0.339 0.057 244);   /* Navy */
+  --chart-2: oklch(0.500 0.080 197);   /* Teal */
+  --chart-3: oklch(0.598 0.094 200);   /* Aqua */
+  --chart-4: oklch(0.730 0.110 200);   /* Light Aqua */
+  --chart-5: oklch(0.480 0.150 60);    /* Amber accent */
+
+  --sidebar: oklch(0.985 0.005 240);
+  --sidebar-foreground: oklch(0.230 0.020 250);
+  --sidebar-primary: oklch(0.339 0.057 244);
+  --sidebar-primary-foreground: oklch(0.985 0.005 240);
+  --sidebar-accent: oklch(0.955 0.012 220);
+  --sidebar-accent-foreground: oklch(0.339 0.057 244);
+  --sidebar-border: oklch(0.918 0.008 230);
+  --sidebar-ring: oklch(0.500 0.080 197);
 }
 
 .dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
+  --background: oklch(0.180 0.020 250);
+  --foreground: oklch(0.940 0.010 230);
+  --card: oklch(0.225 0.022 250);
+  --card-foreground: oklch(0.940 0.010 230);
+  --popover: oklch(0.225 0.022 250);
+  --popover-foreground: oklch(0.940 0.010 230);
+  --primary: oklch(0.598 0.094 200);
+  --primary-foreground: oklch(0.140 0.015 240);
+  --secondary: oklch(0.260 0.022 250);
+  --secondary-foreground: oklch(0.940 0.010 230);
+  --muted: oklch(0.260 0.022 250);
+  --muted-foreground: oklch(0.720 0.015 230);
+  --accent: oklch(0.500 0.080 197);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.598 0.094 200);
+  --chart-1: oklch(0.598 0.094 200);
+  --chart-2: oklch(0.500 0.080 197);
+  --chart-3: oklch(0.730 0.110 200);
+  --chart-4: oklch(0.450 0.060 244);
+  --chart-5: oklch(0.620 0.150 60);
+  --sidebar: oklch(0.225 0.022 250);
+  --sidebar-foreground: oklch(0.940 0.010 230);
+  --sidebar-primary: oklch(0.598 0.094 200);
+  --sidebar-primary-foreground: oklch(0.140 0.015 240);
+  --sidebar-accent: oklch(0.260 0.022 250);
+  --sidebar-accent-foreground: oklch(0.940 0.010 230);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.598 0.094 200);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    font-feature-settings: "ss01", "cv11";
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11", "tnum";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -134,25 +163,12 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .flex {
@@ -162,16 +178,77 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
-      padding-right: 1.5rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
-      padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      max-width: 1280px;
     }
+  }
+
+  /* Subtle aileron mark — abstract delta-wing line */
+  .aileron-grid-bg {
+    background-image:
+      radial-gradient(circle at 12% 18%, oklch(0.500 0.080 197 / 0.06) 0%, transparent 45%),
+      radial-gradient(circle at 88% 82%, oklch(0.339 0.057 244 / 0.06) 0%, transparent 50%),
+      linear-gradient(180deg, transparent 0%, transparent 100%);
+  }
+
+  .hairline {
+    border-color: oklch(0.918 0.008 230);
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* Refined card shadow — barely there, increases on hover */
+  .lift {
+    transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -16px oklch(0.339 0.057 244 / 0.18);
+  }
+
+  .prose-aileron {
+    color: oklch(0.230 0.020 250);
+  }
+  .prose-aileron h1, .prose-aileron h2, .prose-aileron h3 {
+    font-family: var(--font-serif);
+    color: oklch(0.339 0.057 244);
+    letter-spacing: -0.02em;
+  }
+  .prose-aileron h2 { @apply text-2xl font-semibold mt-10 mb-4; }
+  .prose-aileron h3 { @apply text-xl font-semibold mt-8 mb-3; }
+  .prose-aileron p { @apply text-base leading-7 my-4 text-foreground/85; }
+  .prose-aileron ul { @apply list-disc pl-6 my-4 space-y-2; }
+  .prose-aileron ol { @apply list-decimal pl-6 my-4 space-y-2; }
+  .prose-aileron strong { color: oklch(0.339 0.057 244); font-weight: 600; }
+  .prose-aileron blockquote {
+    border-left: 3px solid oklch(0.500 0.080 197);
+    @apply pl-4 italic text-foreground/75 my-4;
+  }
+  .prose-aileron code {
+    font-family: var(--font-mono);
+    @apply text-sm bg-muted px-1.5 py-0.5 rounded;
+  }
+  .prose-aileron table {
+    @apply w-full text-sm my-4 border-collapse;
+  }
+  .prose-aileron th, .prose-aileron td {
+    @apply border border-border px-3 py-2 text-left;
+  }
+  .prose-aileron th {
+    background: oklch(0.965 0.010 220);
+    color: oklch(0.339 0.057 244);
+    @apply font-semibold;
   }
 }

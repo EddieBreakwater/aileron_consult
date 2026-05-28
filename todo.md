@@ -48,3 +48,17 @@
 - [x] Charts (bar and line) using Recharts with toggle
 - [x] Markdown rendering with Streamdown
 - [x] Final build/typecheck/test verification
+
+## Brand Alignment (v2)
+- [ ] Replace AileronMark SVG with official "A + medical cross" wing logo
+- [ ] Update color palette to exact brand hex (Medical Navy #0B1E3A, Surgical Teal #0EA5A4, Clinical Aqua #7ED3D1, Soft Sage #A9CBB0, Mist Gray #F1F4F7)
+- [ ] Add Soft Sage as a third accent for "good/on-band" states
+- [ ] Update tagline to "Operational guidance for physician leadership."
+- [ ] Update SiteHeader, SiteFooter, DashboardLayout, and favicon to use new logo
+- [ ] Verify legibility/contrast across all pages
+
+## Specialties — reputable resources & briefings (v3)
+- [x] Build curated resource list per specialty (MGMA, Becker's, AGA/ASGE/ACG, AAOS/AAOE, AAFP/ACP, AOA, AAO/ASCRS/ASRS, ASCO/ACCC/COA/ASH, KFF, CMS, Health Affairs)
+- [x] Add a short "what's changing now" briefing for each specialty
+- [x] Render links and trends panel on each specialty card on /specialties
+- [x] Add SEO meta and titles for /specialties (30–60 chars) using useDocumentTitle

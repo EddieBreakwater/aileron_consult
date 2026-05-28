@@ -30,9 +30,9 @@ interface Props {
 export function BenchmarkChart({ data, title, height = 320, defaultMode = "bar" }: Props) {
   const [mode, setMode] = useState<"bar" | "line">(defaultMode);
 
-  const yoursColor = "oklch(0.500 0.080 197)"; // accent
-  const medianColor = "oklch(0.339 0.057 244)"; // primary
-  const flagColor = "oklch(0.577 0.245 27.325)"; // destructive
+  const yoursColor = "#0EA5A4"; // Surgical Teal
+  const medianColor = "#0B1E3A"; // Medical Navy
+  const flagColor = "#B91C1C"; // destructive
 
   return (
     <div className="rounded-xl border border-border/70 bg-card p-6">
@@ -62,7 +62,7 @@ export function BenchmarkChart({ data, title, height = 320, defaultMode = "bar" 
       <ResponsiveContainer width="100%" height={height}>
         {mode === "bar" ? (
           <BarChart data={data} margin={{ top: 4, right: 8, left: 0, bottom: 8 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="oklch(0.92 0.01 240)" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E3E8EE" />
             <XAxis
               dataKey="label"
               tick={{ fontSize: 11 }}
@@ -75,7 +75,7 @@ export function BenchmarkChart({ data, title, height = 320, defaultMode = "bar" 
             <Tooltip
               contentStyle={{
                 background: "white",
-                border: "1px solid oklch(0.92 0.01 240)",
+                border: "1px solid #E3E8EE",
                 borderRadius: 8,
                 fontSize: 12,
               }}
@@ -86,13 +86,13 @@ export function BenchmarkChart({ data, title, height = 320, defaultMode = "bar" 
           </BarChart>
         ) : (
           <LineChart data={data} margin={{ top: 4, right: 12, left: 0, bottom: 8 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="oklch(0.92 0.01 240)" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E3E8EE" />
             <XAxis dataKey="label" tick={{ fontSize: 11 }} />
             <YAxis tick={{ fontSize: 11 }} />
             <Tooltip
               contentStyle={{
                 background: "white",
-                border: "1px solid oklch(0.92 0.01 240)",
+                border: "1px solid #E3E8EE",
                 borderRadius: 8,
                 fontSize: 12,
               }}

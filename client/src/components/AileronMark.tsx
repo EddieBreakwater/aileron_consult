@@ -1,36 +1,74 @@
 interface AileronMarkProps {
   className?: string;
+  /** When true, render single-color in currentColor (for monochrome contexts). */
+  mono?: boolean;
 }
 
 /**
- * Abstract aileron / delta-wing mark.
- * Designed to read at sizes from 18px (favicon) through 64px (hero).
+ * Official AileronMD Consult mark.
+ *
+ * Concept: an angular winged "A" formed by two solid panels.
+ * - Upper-right panel: Medical Navy (#0B1E3A) — the body of the A.
+ * - Lower-left wing: Surgical Teal (#0EA5A4) — carries a white medical cross,
+ *   tying the practice management mission to medicine.
+ *
+ * The shape is designed to read from 18px favicon through 96px hero.
  */
-export function AileronMark({ className }: AileronMarkProps) {
+export function AileronMark({ className, mono = false }: AileronMarkProps) {
+  if (mono) {
+    return (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        {/* Combined silhouette — keeps the A-wing read at small sizes */}
+        <path
+          d="M40 4 L58 60 L46 60 L42 48 L22 48 L18 60 L6 60 L36 4 Z"
+          fill="currentColor"
+        />
+        {/* Cross cut-out for monochrome contexts */}
+        <path d="M30 28 H38 V32 H34 V40 H30 Z M28 32 H40 V36 H28 Z" fill="white" opacity="0.92" />
+      </svg>
+    );
+  }
+
   return (
     <svg
       className={className}
-      viewBox="0 0 32 32"
+      viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden
     >
-      <defs>
-        <linearGradient id="aileron-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="currentColor" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="currentColor" stopOpacity="0.55" />
-        </linearGradient>
-      </defs>
+      {/* Lower-left wing in Surgical Teal — softens the navy mass */}
       <path
-        d="M3 26 L29 6 L29 14 L13 26 Z"
-        fill="url(#aileron-grad)"
+        d="M6 60 L22 60 L36 24 L36 4 L36 4 L6 60 Z"
+        fill="#0EA5A4"
       />
+      {/* Subtle deeper teal at the wing tip for dimension */}
       <path
-        d="M11 26 L29 12 L29 19 L19 26 Z"
-        fill="currentColor"
-        opacity="0.35"
+        d="M6 60 L22 60 L26 50 L14 50 Z"
+        fill="#0B8F8E"
+        opacity="0.55"
       />
-      <circle cx="29" cy="6" r="1.6" fill="currentColor" opacity="0.85" />
+      {/* Body of the A — Medical Navy */}
+      <path
+        d="M36 4 L58 60 L46 60 L42 48 L22 48 L26 38 L36 38 L36 4 Z"
+        fill="#0B1E3A"
+      />
+      {/* The fly-away navy fold suggesting the upstroke */}
+      <path
+        d="M36 4 L58 60 L52 60 L36 24 Z"
+        fill="#13294B"
+      />
+      {/* Medical cross sitting in the wing */}
+      <g transform="translate(0,0)">
+        <rect x="22" y="34" width="8" height="14" rx="0.5" fill="white" />
+        <rect x="18" y="38" width="16" height="6" rx="0.5" fill="white" />
+      </g>
     </svg>
   );
 }

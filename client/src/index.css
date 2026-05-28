@@ -41,62 +41,71 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  /* AileronMD palette
-     Medical Navy   #1A3A52  -> oklch(0.339 0.057 244)
-     Surgical Teal  #0D7377  -> oklch(0.500 0.080 197)
-     Clinical Aqua  #14919B  -> oklch(0.598 0.094 200)
-     Mist           #F5F8FA  background
-     Slate Ink      #1F2A37  body text
+  /* AileronMD Consult — Official Brand Palette
+     Medical Navy   #0B1E3A   primary, headlines, navy panel of the A
+     Surgical Teal  #0EA5A4   accent, links, charts, wing color
+     Clinical Aqua  #7ED3D1   secondary accent, soft surfaces
+     Soft Sage      #A9CBB0   on-band / good status
+     Mist Gray      #F1F4F7   background, dividers
   */
   --radius: 0.625rem;
 
-  --background: oklch(0.992 0.002 240);
-  --foreground: oklch(0.230 0.020 250);
+  /* Brand hex tokens (use as raw CSS vars when needed) */
+  --brand-navy: #0B1E3A;
+  --brand-navy-2: #13294B;
+  --brand-teal: #0EA5A4;
+  --brand-teal-2: #0B8F8E;
+  --brand-aqua: #7ED3D1;
+  --brand-sage: #A9CBB0;
+  --brand-mist: #F1F4F7;
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.230 0.020 250);
+  --background: #FBFCFD;
+  --foreground: oklch(0.225 0.025 248);
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.230 0.020 250);
+  --card: #FFFFFF;
+  --card-foreground: oklch(0.225 0.025 248);
 
-  --primary: oklch(0.339 0.057 244);          /* Medical Navy */
-  --primary-foreground: oklch(0.985 0.005 240);
+  --popover: #FFFFFF;
+  --popover-foreground: oklch(0.225 0.025 248);
 
-  --secondary: oklch(0.965 0.010 220);
-  --secondary-foreground: oklch(0.339 0.057 244);
+  --primary: #0B1E3A;                         /* Medical Navy */
+  --primary-foreground: #FFFFFF;
 
-  --muted: oklch(0.965 0.008 230);
+  --secondary: #F1F4F7;                       /* Mist Gray */
+  --secondary-foreground: #0B1E3A;
+
+  --muted: #F1F4F7;
   --muted-foreground: oklch(0.500 0.020 240);
 
-  --accent: oklch(0.500 0.080 197);            /* Surgical Teal */
-  --accent-foreground: oklch(0.985 0.005 200);
+  --accent: #0EA5A4;                          /* Surgical Teal */
+  --accent-foreground: #FFFFFF;
 
   --destructive: oklch(0.577 0.215 27);
-  --destructive-foreground: oklch(0.985 0 0);
+  --destructive-foreground: #FFFFFF;
 
-  --border: oklch(0.918 0.008 230);
-  --input: oklch(0.918 0.008 230);
-  --ring: oklch(0.500 0.080 197);
+  --border: #E3E8EE;
+  --input: #E3E8EE;
+  --ring: #0EA5A4;
 
-  --chart-1: oklch(0.339 0.057 244);   /* Navy */
-  --chart-2: oklch(0.500 0.080 197);   /* Teal */
-  --chart-3: oklch(0.598 0.094 200);   /* Aqua */
-  --chart-4: oklch(0.730 0.110 200);   /* Light Aqua */
-  --chart-5: oklch(0.480 0.150 60);    /* Amber accent */
+  --chart-1: #0B1E3A;   /* Navy */
+  --chart-2: #0EA5A4;   /* Teal */
+  --chart-3: #7ED3D1;   /* Aqua */
+  --chart-4: #A9CBB0;   /* Sage */
+  --chart-5: #B58800;   /* Amber accent */
 
-  --sidebar: oklch(0.985 0.005 240);
-  --sidebar-foreground: oklch(0.230 0.020 250);
-  --sidebar-primary: oklch(0.339 0.057 244);
-  --sidebar-primary-foreground: oklch(0.985 0.005 240);
-  --sidebar-accent: oklch(0.955 0.012 220);
-  --sidebar-accent-foreground: oklch(0.339 0.057 244);
-  --sidebar-border: oklch(0.918 0.008 230);
-  --sidebar-ring: oklch(0.500 0.080 197);
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: oklch(0.225 0.025 248);
+  --sidebar-primary: #0B1E3A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F1F4F7;
+  --sidebar-accent-foreground: #0B1E3A;
+  --sidebar-border: #E3E8EE;
+  --sidebar-ring: #0EA5A4;
 }
 
 .dark {
@@ -139,15 +148,18 @@
     @apply border-border outline-ring/50;
   }
   html {
-    font-feature-settings: "ss01", "cv11";
+    font-feature-settings: "cv11";
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings: "ss01", "cv11", "tnum";
+    font-feature-settings: "cv11", "tnum";
   }
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
+    /* Newsreader: turn off discretionary ligatures so 'f' stays a normal 'f' */
+    font-variant-ligatures: common-ligatures;
+    font-feature-settings: "liga" 1, "dlig" 0, "clig" 0, "calt" 0;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -191,11 +203,11 @@
     }
   }
 
-  /* Subtle aileron mark — abstract delta-wing line */
+  /* Soft brand wash — for hero and section backgrounds */
   .aileron-grid-bg {
     background-image:
-      radial-gradient(circle at 12% 18%, oklch(0.500 0.080 197 / 0.06) 0%, transparent 45%),
-      radial-gradient(circle at 88% 82%, oklch(0.339 0.057 244 / 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 12% 18%, rgba(14, 165, 164, 0.07) 0%, transparent 45%),
+      radial-gradient(circle at 88% 82%, rgba(11, 30, 58, 0.06) 0%, transparent 50%),
       linear-gradient(180deg, transparent 0%, transparent 100%);
   }
 
@@ -215,7 +227,7 @@
   }
   .lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px -16px oklch(0.339 0.057 244 / 0.18);
+    box-shadow: 0 12px 32px -16px rgba(11, 30, 58, 0.18);
   }
 
   .prose-aileron {
@@ -223,7 +235,7 @@
   }
   .prose-aileron h1, .prose-aileron h2, .prose-aileron h3 {
     font-family: var(--font-serif);
-    color: oklch(0.339 0.057 244);
+    color: #0B1E3A;
     letter-spacing: -0.02em;
   }
   .prose-aileron h2 { @apply text-2xl font-semibold mt-10 mb-4; }
@@ -231,9 +243,9 @@
   .prose-aileron p { @apply text-base leading-7 my-4 text-foreground/85; }
   .prose-aileron ul { @apply list-disc pl-6 my-4 space-y-2; }
   .prose-aileron ol { @apply list-decimal pl-6 my-4 space-y-2; }
-  .prose-aileron strong { color: oklch(0.339 0.057 244); font-weight: 600; }
+  .prose-aileron strong { color: #0B1E3A; font-weight: 600; }
   .prose-aileron blockquote {
-    border-left: 3px solid oklch(0.500 0.080 197);
+    border-left: 3px solid #0EA5A4;
     @apply pl-4 italic text-foreground/75 my-4;
   }
   .prose-aileron code {
@@ -247,8 +259,8 @@
     @apply border border-border px-3 py-2 text-left;
   }
   .prose-aileron th {
-    background: oklch(0.965 0.010 220);
-    color: oklch(0.339 0.057 244);
+    background: #F1F4F7;
+    color: #0B1E3A;
     @apply font-semibold;
   }
 }

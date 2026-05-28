@@ -1,9 +1,14 @@
 import { PublicLayout } from "@/components/PublicLayout";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { trpc } from "@/lib/trpc";
 import { ArrowUpRight, Loader2 } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Insights() {
+  useDocumentTitle(
+    "Insights \u2014 Practice Operations Library",
+    "Plain-English answers to real practice management problems: revenue cycle, scheduling, payer contracts, staffing, overhead, and resilience.",
+  );
   const { data, isLoading } = trpc.blog.list.useQuery();
 
   return (

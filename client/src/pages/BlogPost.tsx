@@ -1,5 +1,6 @@
 import { PublicLayout } from "@/components/PublicLayout";
 import { Button } from "@/components/ui/button";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { trpc } from "@/lib/trpc";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { Streamdown } from "streamdown";
@@ -9,6 +10,10 @@ export default function BlogPost() {
   const { slug } = useParams();
   const post = trpc.blog.bySlug.useQuery({ slug: slug ?? "" }, { enabled: !!slug });
   const allPosts = trpc.blog.list.useQuery();
+  useDocumentTitle(
+    post.data?.title ?? "Insights \u2014 Practice Operations",
+    post.data?.excerpt ?? undefined,
+  );
 
   if (post.isLoading || allPosts.isLoading) {
     return (

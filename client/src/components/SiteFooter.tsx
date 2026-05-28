@@ -16,6 +16,9 @@ export function SiteFooter() {
                 </div>
               </div>
             </div>
+            <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.18em] text-accent">
+              Operational guidance for physician leadership.
+            </p>
             <p className="mt-4 max-w-md text-sm leading-6 text-muted-foreground">
               Monthly operational briefings for medical practices. Specialty-specific benchmarks,
               clear priorities, no dashboards to babysit.

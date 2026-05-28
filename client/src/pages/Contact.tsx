@@ -3,11 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export default function Contact() {
+  useDocumentTitle(
+    "Contact \u2014 Talk to AileronMD Consult",
+    "Request a specialty, ask about enterprise plans, or send a question. We reply to every message within one business day.",
+  );
   const [form, setForm] = useState({ name: "", email: "", practice: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const notify = trpc.system.notifyOwner.useMutation();

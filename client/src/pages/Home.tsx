@@ -3,6 +3,7 @@ import { PublicLayout } from "@/components/PublicLayout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getLoginUrl } from "@/const";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { trpc } from "@/lib/trpc";
 import {
   ArrowRight,
@@ -52,6 +53,10 @@ const TIMELINE = [
 ];
 
 export default function Home() {
+  useDocumentTitle(
+    "AileronMD Consult \u2014 Operational Briefings",
+    "Monthly, specialty-benchmarked operational briefings for physician practices. Plain-English advice, a scorecard, and a ranked focus list.",
+  );
   const blog = trpc.blog.list.useQuery();
 
   return (

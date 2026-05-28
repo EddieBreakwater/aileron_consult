@@ -50,12 +50,14 @@
 - [x] Final build/typecheck/test verification
 
 ## Brand Alignment (v2)
-- [ ] Replace AileronMark SVG with official "A + medical cross" wing logo
-- [ ] Update color palette to exact brand hex (Medical Navy #0B1E3A, Surgical Teal #0EA5A4, Clinical Aqua #7ED3D1, Soft Sage #A9CBB0, Mist Gray #F1F4F7)
-- [ ] Add Soft Sage as a third accent for "good/on-band" states
-- [ ] Update tagline to "Operational guidance for physician leadership."
-- [ ] Update SiteHeader, SiteFooter, DashboardLayout, and favicon to use new logo
-- [ ] Verify legibility/contrast across all pages
+- [x] Replace AileronMark SVG with official "A + medical cross" wing logo
+- [x] Update color palette to exact brand hex (Medical Navy #0B1E3A, Surgical Teal #0EA5A4, Clinical Aqua #7ED3D1, Soft Sage #A9CBB0, Mist Gray #F1F4F7)
+- [x] Add Soft Sage as a third accent (chart-4) for on-band states
+- [x] Update tagline to "Operational guidance for physician leadership." in footer
+- [x] AileronMark used by SiteHeader, SiteFooter, DashboardLayout (shared component)
+- [x] Newsreader serif font replacing Fraunces (no more squiggly f)
+- [x] Per-page useDocumentTitle on Home, Pricing, Specialties, HowItWorks, Insights, BlogPost, Resources, Contact
+- [x] Index.html keyword/OG/Twitter/canonical meta tags
 
 ## Specialties — reputable resources & briefings (v3)
 - [x] Build curated resource list per specialty (MGMA, Becker's, AGA/ASGE/ACG, AAOS/AAOE, AAFP/ACP, AOA, AAO/ASCRS/ASRS, ASCO/ACCC/COA/ASH, KFF, CMS, Health Affairs)

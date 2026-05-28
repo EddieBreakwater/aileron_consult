@@ -1,5 +1,6 @@
 import { PublicLayout } from "@/components/PublicLayout";
 import { Button } from "@/components/ui/button";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { Streamdown } from "streamdown";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
@@ -93,6 +94,10 @@ If you’re truly stuck, our onboarding consult includes a 30-minute working ses
 const TABS = Object.keys(EHR_GUIDES);
 
 export default function Resources() {
+  useDocumentTitle(
+    "EHR Reporting Guide \u2014 Native Reports",
+    "How to pull every AileronMD KPI from the EHR you already pay for: Epic, athenahealth, eClinicalWorks, NextGen, Cerner Oracle, and Practice Fusion.",
+  );
   const [tab, setTab] = useState("Epic");
 
   return (

@@ -2,6 +2,7 @@ import { PublicLayout } from "@/components/PublicLayout";
 import { Button } from "@/components/ui/button";
 import { getLoginUrl } from "@/const";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { Check } from "lucide-react";
 import { Link } from "wouter";
 
@@ -56,6 +57,10 @@ const FAQ = [
 ];
 
 export default function Pricing() {
+  useDocumentTitle(
+    "Pricing \u2014 Solo & Group Plans",
+    "Flat monthly pricing for AileronMD Consult: $199 for solo practices, $349 for groups. 30-day trial, no setup fee, cancel any time.",
+  );
   const { isAuthenticated } = useAuth();
 
   return (

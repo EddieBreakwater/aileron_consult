@@ -1,5 +1,6 @@
 import { PublicLayout } from "@/components/PublicLayout";
 import { Button } from "@/components/ui/button";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
@@ -31,6 +32,10 @@ const STEPS = [
 ];
 
 export default function HowItWorks() {
+  useDocumentTitle(
+    "How It Works \u2014 Monthly Briefing Cycle",
+    "Submit your numbers, we benchmark and write, you read the briefing. Twenty days. Four steps. One briefing you'll actually read.",
+  );
   return (
     <PublicLayout>
       <section className="border-b border-border/60 bg-secondary/30">

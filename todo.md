@@ -64,3 +64,13 @@
 - [x] Add a short "what's changing now" briefing for each specialty
 - [x] Render links and trends panel on each specialty card on /specialties
 - [x] Add SEO meta and titles for /specialties (30–60 chars) using useDocumentTitle
+
+## v4 — Value voice & advisor positioning
+- [x] Rewrite /how-it-works around the value (outcomes, not process); de-emphasize cadence steps
+- [x] Position the senior advisor as the human curating every Consult report
+- [x] Remove AI references from Home timeline middle step; CTA labels updated
+- [x] index.html meta description: "AI-assisted" → "advisor-curated"
+- [x] SubmitNumbers button "Generate briefing" → "Prepare briefing"; toast updated
+- [x] Header/Footer label "How it works" → "What you get"
+- [x] Specialty trends keep clinical-AI references (CADe, DR screening) as those are real specialty trends
+- [x] Typecheck clean, 10/10 vitest pass

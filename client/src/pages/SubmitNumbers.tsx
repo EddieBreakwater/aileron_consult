@@ -80,7 +80,7 @@ export default function SubmitNumbers() {
 
   const generate = trpc.briefing.generate.useMutation({
     onSuccess: () => {
-      toast.success("Briefing generated");
+      toast.success("Briefing prepared");
       navigate("/dashboard/briefing");
     },
     onError: e => toast.error(e.message),
@@ -260,7 +260,7 @@ export default function SubmitNumbers() {
                   onClick={handleGenerate}
                 >
                   <Sparkles className="mr-1.5 h-4 w-4 text-accent" />
-                  {generate.isPending ? "Generating..." : "Generate briefing"}
+                  {generate.isPending ? "Preparing\u2026" : "Prepare briefing"}
                 </Button>
               </div>
             </div>

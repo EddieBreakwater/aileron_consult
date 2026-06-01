@@ -29,7 +29,7 @@ export function SiteFooter() {
               Product
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><Link href="/how-it-works" className="text-muted-foreground hover:text-primary">How it works</Link></li>
+              <li><Link href="/how-it-works" className="text-muted-foreground hover:text-primary">What you get</Link></li>
               <li><Link href="/specialties" className="text-muted-foreground hover:text-primary">Specialties</Link></li>
               <li><Link href="/pricing" className="text-muted-foreground hover:text-primary">Pricing</Link></li>
               <li><Link href="/resources" className="text-muted-foreground hover:text-primary">EHR reporting guide</Link></li>

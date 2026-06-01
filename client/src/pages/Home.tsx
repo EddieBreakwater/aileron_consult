@@ -40,8 +40,8 @@ const TIMELINE = [
   },
   {
     days: "Day 6–15",
-    title: "We benchmark and write",
-    body: "Your figures are scored against specialty peers. A senior advisor reviews the AI draft. The briefing arrives written, not generated.",
+    title: "A senior advisor reviews and writes",
+    body: "Your figures are scored against specialty peers. A senior advisor reads the month in context and writes the briefing in the voice physicians trust — direct, specific, and willing to take a position.",
     icon: Sparkles,
   },
   {
@@ -101,7 +101,7 @@ export default function Home() {
                   variant="outline"
                   className="border-primary/20 bg-background/80 text-primary hover:bg-primary/5"
                 >
-                  <Link href="/how-it-works">See how it works</Link>
+                  <Link href="/how-it-works">See what you get</Link>
                 </Button>
                 <a
                   href={getLoginUrl()}
@@ -228,7 +228,7 @@ export default function Home() {
                 className="mt-7 border-primary/20 text-primary hover:bg-primary/5"
               >
                 <Link href="/how-it-works">
-                  Walk through a full month
+                  See the full value
                   <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>

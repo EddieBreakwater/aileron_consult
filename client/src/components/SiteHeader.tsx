@@ -6,7 +6,7 @@ import { AileronMark } from "@/components/AileronMark";
 
 const NAV = [
   { href: "/specialties", label: "Specialties" },
-  { href: "/how-it-works", label: "How it works" },
+  { href: "/how-it-works", label: "What you get" },
   { href: "/pricing", label: "Pricing" },
   { href: "/insights", label: "Insights" },
   { href: "/resources", label: "Resources" },

@@ -71,17 +71,19 @@ export default function Home() {
                 className="mb-6 border-accent/40 bg-accent/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-accent"
               >
                 <span className="mr-2 h-1.5 w-1.5 rounded-full bg-accent" />
-                Beta — Six specialties, monthly cadence
+                Operational guidance for physician leadership
               </Badge>
               <h1 className="font-serif text-5xl leading-[1.05] tracking-tight text-primary md:text-6xl">
-                A monthly operating brief
+                Clarity, where the
                 <br />
-                <span className="text-accent">for the practice you actually run.</span>
+                <span className="text-accent">numbers used to blur.</span>
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-8 text-foreground/75">
-                AileronMD Consult turns your EHR numbers into one specialty-benchmarked briefing
-                each month. Three paragraphs of plain advice, a scorecard, and a ranked focus
-                list. No dashboards to babysit. No quarterly off-sites.
+                Running an independent practice means making consequential decisions on
+                fragmented data. AileronMD turns the figures you already have into a monthly
+                briefing you can actually use — read in your specialty’s context, written
+                by a senior advisor, and pointed at the few things that will move the practice
+                this month.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-3">

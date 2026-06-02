@@ -13,7 +13,7 @@ import {
   Stethoscope,
   TrendingUp,
 } from "lucide-react";
-import type { ComponentType } from "react";
+import { useEffect, type ComponentType } from "react";
 import { Link } from "wouter";
 
 interface CardData {
@@ -114,6 +114,17 @@ export default function Specialties() {
     "Specialty-specific benchmarks, current trends, and curated links to MGMA, Becker's, AGA, ASGE, AAOS, AAO, ASCO, AAFP and other trusted resources.",
   );
 
+  // Scroll to the specialty section referenced in the URL hash (e.g. /specialties#gastroenterology)
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+    const el = document.getElementById(hash);
+    if (el) {
+      // Defer to allow content to render before scrolling
+      requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
+    }
+  }, []);
+
   return (
     <PublicLayout>
       <section className="border-b border-border/60 bg-secondary/30">
@@ -144,7 +155,8 @@ export default function Specialties() {
               return (
                 <article
                   key={card.slug}
-                  className="overflow-hidden rounded-2xl border border-border/70 bg-card"
+                  id={card.slug}
+                  className="scroll-mt-28 overflow-hidden rounded-2xl border border-border/70 bg-card"
                 >
                   {/* Header band */}
                   <header className="flex flex-wrap items-start justify-between gap-4 border-b border-border/60 bg-secondary/30 px-7 py-6">

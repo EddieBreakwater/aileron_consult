@@ -3,6 +3,7 @@ import { PublicLayout } from "@/components/PublicLayout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getLoginUrl } from "@/const";
+import { SPECIALTIES } from "@shared/aileron";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { trpc } from "@/lib/trpc";
 import {
@@ -114,12 +115,15 @@ export default function Home() {
               </div>
 
               <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                <span>Primary Care</span>
-                <span>Gastroenterology</span>
-                <span>Orthopedics</span>
-                <span>Heme/Onc</span>
-                <span>Optometry</span>
-                <span>Ophthalmology</span>
+                {SPECIALTIES.map(s => (
+                  <Link
+                    key={s.slug}
+                    href={`/specialties#${s.slug}`}
+                    className="underline-offset-4 transition-colors hover:text-accent hover:underline"
+                  >
+                    {s.label}
+                  </Link>
+                ))}
               </div>
             </div>
 

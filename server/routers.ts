@@ -263,11 +263,12 @@ export const appRouter = router({
     all: publicProcedure.query(() => getAllBenchmarks()),
 
     seedIfEmpty: publicProcedure.mutation(async () => {
-      const count = await countBenchmarks();
-      if (count > 0) return { seeded: 0, total: count };
+      const before = await countBenchmarks();
+      // Idempotent: upserts the full seed set, backfilling any specialties
+      // (e.g. newly added ones) without duplicating existing rows.
       await bulkInsertBenchmarks(BENCHMARK_SEEDS);
-      const newCount = await countBenchmarks();
-      return { seeded: newCount, total: newCount };
+      const after = await countBenchmarks();
+      return { seeded: after - before, total: after };
     }),
   }),
 

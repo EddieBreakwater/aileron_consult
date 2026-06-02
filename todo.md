@@ -74,3 +74,17 @@
 - [x] Header/Footer label "How it works" → "What you get"
 - [x] Specialty trends keep clinical-AI references (CADe, DR screening) as those are real specialty trends
 - [x] Typecheck clean, 10/10 vitest pass
+
+## v7 — Five new specialties (DONE: Urology, Plastic Surgery, Radiology, Cardiology, Pain Management)
+- [x] Added to SPECIALTIES list (shared/aileron.ts)
+- [x] Benchmark seeds (16 metrics each) added and re-seeded to DB (176 rows total)
+- [x] Specialty dossiers (trends + curated resources) added
+- [x] Specialty cards + icons added to /specialties
+- [x] seedIfEmpty upgraded to idempotent backfill
+- [x] Tests updated (11 specialties × 16 metrics, dossier coverage); 11/11 pass; typecheck clean (Urology, Plastic Surgery, Radiology, Cardiology, Pain Management)
+- [ ] Add slugs+labels to SPECIALTIES in shared/aileron.ts
+- [ ] Add benchmark seed rows for each new specialty (server/_aileron/benchmarkSeeds.ts)
+- [ ] Add SPECIALTY_DOSSIERS entries (trends + curated resources) in shared/specialtyResources.ts
+- [ ] Add CARDS entries (icon, headline, body, benchmarks) in Specialties.tsx
+- [ ] Re-seed benchmarks (admin/seed endpoint) and verify rows
+- [ ] Typecheck + tests, checkpoint

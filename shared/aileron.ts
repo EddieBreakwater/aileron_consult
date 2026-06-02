@@ -10,6 +10,11 @@ export const SPECIALTIES = [
   { slug: "hematology_oncology", label: "Hematology / Oncology" },
   { slug: "optometry", label: "Optometry" },
   { slug: "ophthalmology", label: "Ophthalmology" },
+  { slug: "urology", label: "Urology" },
+  { slug: "plastic_surgery", label: "Plastic Surgery" },
+  { slug: "radiology", label: "Radiology" },
+  { slug: "cardiology", label: "Cardiology" },
+  { slug: "pain_management", label: "Pain Management" },
 ] as const;
 
 export type SpecialtySlug = (typeof SPECIALTIES)[number]["slug"];

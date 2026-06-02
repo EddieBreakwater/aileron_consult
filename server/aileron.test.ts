@@ -8,6 +8,8 @@ import {
 } from "../shared/aileron";
 import { BLOG_POSTS } from "../shared/blog";
 import { BENCHMARK_SEEDS } from "./_aileron/benchmarkSeeds";
+import { SPECIALTIES } from "../shared/aileron";
+import { SPECIALTY_DOSSIERS } from "../shared/specialtyResources";
 import type { TrpcContext } from "./_core/context";
 
 function createPublicContext(): TrpcContext {
@@ -86,9 +88,26 @@ describe("blog router", () => {
 });
 
 describe("benchmark seeds", () => {
-  it("covers 16 metrics across all 6 specialties", () => {
-    expect(BENCHMARK_SEEDS.length).toBe(96);
+  it("covers 16 metrics for every supported specialty", () => {
+    const slugs = SPECIALTIES.map(s => s.slug);
+    expect(slugs.length).toBe(11);
+    expect(BENCHMARK_SEEDS.length).toBe(slugs.length * 16);
     const specialties = new Set(BENCHMARK_SEEDS.map(b => b.specialty));
-    expect(specialties.size).toBe(6);
+    expect(specialties.size).toBe(slugs.length);
+    // Every specialty in the canonical list must have exactly 16 seeded metrics.
+    for (const slug of slugs) {
+      const rows = BENCHMARK_SEEDS.filter(b => b.specialty === slug);
+      expect(rows.length, `benchmark rows for ${slug}`).toBe(16);
+    }
+  });
+
+  it("has a dossier (briefing + resources) for every specialty", () => {
+    for (const { slug } of SPECIALTIES) {
+      const dossier = SPECIALTY_DOSSIERS[slug];
+      expect(dossier, `dossier for ${slug}`).toBeTruthy();
+      expect(dossier.briefing.state.length).toBeGreaterThan(40);
+      expect(dossier.briefing.trends.length).toBeGreaterThanOrEqual(3);
+      expect(dossier.resources.length).toBeGreaterThanOrEqual(3);
+    }
   });
 });

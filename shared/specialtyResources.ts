@@ -313,4 +313,179 @@ export const SPECIALTY_DOSSIERS: Record<SpecialtySlug, SpecialtyDossier> = {
       ...COMMON_RESOURCES.slice(0, 3),
     ],
   },
+
+  urology: {
+    briefing: {
+      state:
+        "Urology is a procedure- and ancillary-heavy specialty where in-office labs, imaging, lithotripsy, and increasingly radiation/UroLift drive most of the margin. Independent groups are building large single-specialty platforms (LUGPA-style) to retain ancillaries that hospitals and payers keep pressuring.",
+      trends: [
+        "Large urology group platforms (LUGPA model) continue consolidating to preserve in-office ancillaries — pathology, imaging, and radiation oncology.",
+        "Advanced prostate cancer drugs and in-office dispensing are a growing but compliance-heavy revenue line.",
+        "Site-of-service pressure and prior auth on advanced imaging (mpMRI, PSMA PET) shape access and throughput.",
+        "UroLift, Rezum, and other in-office BPH procedures are shifting cases out of the OR and into the clinic.",
+        "Workforce: a well-documented urologist shortage makes APP leverage and retention a core operational lever.",
+      ],
+    },
+    resources: [
+      {
+        name: "American Urological Association (AUA)",
+        blurb: "Clinical guidelines, coding, and practice management resources",
+        url: "https://www.auanet.org",
+        kind: "association",
+      },
+      {
+        name: "LUGPA",
+        blurb: "Advocacy and benchmarking for large independent urology groups",
+        url: "https://www.lugpa.org",
+        kind: "association",
+      },
+      {
+        name: "Urology Times",
+        blurb: "Trade reporting on practice, reimbursement, and policy",
+        url: "https://www.urologytimes.com",
+        kind: "publication",
+      },
+      ...COMMON_RESOURCES.slice(0, 3),
+    ],
+  },
+
+  plastic_surgery: {
+    briefing: {
+      state:
+        "Plastic surgery straddles two economies: insured reconstructive work with conventional revenue-cycle dynamics, and an elective cash-pay aesthetic practice that behaves more like a luxury retail business. The best-run practices manage them on separate ledgers, with marketing CAC, consult-to-conversion, and financing mix as the aesthetic-side KPIs.",
+      trends: [
+        "Cash-pay aesthetics keep growing; consult-to-surgery conversion and patient financing (CareCredit, Cherry) are the real revenue levers.",
+        "Med-spa adjacencies (injectables, devices, skincare) provide recurring revenue that smooths surgical seasonality.",
+        "Digital marketing and reputation management now function as a primary patient-acquisition channel, with measurable CAC.",
+        "GLP-1-driven weight loss is expanding demand for body-contouring and skin-removal procedures.",
+        "Reconstructive payer mix and prior authorization remain the operational drag on the insured side of the practice.",
+      ],
+    },
+    resources: [
+      {
+        name: "American Society of Plastic Surgeons (ASPS)",
+        blurb: "Clinical, coding, and practice management resources",
+        url: "https://www.plasticsurgery.org",
+        kind: "association",
+      },
+      {
+        name: "The Aesthetic Society (ASAPS)",
+        blurb: "Aesthetic practice data, marketing, and business education",
+        url: "https://www.theaestheticsociety.org",
+        kind: "society",
+      },
+      {
+        name: "Plastic Surgery Practice",
+        blurb: "Trade reporting on aesthetic and reconstructive practice",
+        url: "https://plasticsurgerypractice.com",
+        kind: "publication",
+      },
+      ...COMMON_RESOURCES.slice(0, 3),
+    ],
+  },
+
+  radiology: {
+    briefing: {
+      state:
+        "Radiology economics center on read volume, modality mix, and the relentless pressure of the professional-fee conversion factor. Independent imaging centers and radiology groups are weighing teleradiology leverage, subspecialty reads, and the shift of imaging away from hospital outpatient departments toward lower-cost freestanding sites.",
+      trends: [
+        "Site-neutral and payer steerage continue to move imaging volume to freestanding centers from HOPDs.",
+        "Teleradiology and night/subspecialty coverage models reshape staffing economics and read-quality benchmarks.",
+        "AI triage and workflow tools are being adopted for efficiency and prioritization, with ROI tied to throughput, not headcount cuts.",
+        "Radiologist supply shortages and burnout are pushing RVU-per-FTE and turnaround time to the center of operations.",
+        "No Surprises Act and out-of-network dynamics affect collections for hospital-based and contracted reads.",
+      ],
+    },
+    resources: [
+      {
+        name: "American College of Radiology (ACR)",
+        blurb: "Clinical standards, accreditation, and economics resources",
+        url: "https://www.acr.org",
+        kind: "association",
+      },
+      {
+        name: "Radiology Business",
+        blurb: "Reporting on imaging economics, M&A, and operations",
+        url: "https://radiologybusiness.com",
+        kind: "publication",
+      },
+      {
+        name: "RSNA",
+        blurb: "Research, education, and clinical practice for radiology",
+        url: "https://www.rsna.org",
+        kind: "society",
+      },
+      ...COMMON_RESOURCES.slice(0, 3),
+    ],
+  },
+
+  cardiology: {
+    briefing: {
+      state:
+        "Cardiology is a high-ancillary specialty — nuclear, echo, cath, and EP — where the long arc has been from hospital employment back toward independence as payers and CMS revalue office-based and ASC-based cardiovascular procedures. Imaging accreditation, device clinic throughput, and cardiovascular ASC strategy define the margin.",
+      trends: [
+        "CMS has been rebuilding office- and ASC-based cardiovascular procedure payment, reopening the case for independence and de-novo cardiovascular ASCs.",
+        "In-office ancillaries (nuclear, echo, vascular, device/remote-monitoring clinics) remain the core margin engine.",
+        "Remote patient monitoring and CIED remote interrogation are recurring-revenue lines with their own staffing and compliance needs.",
+        "Value-based cardiology and bundled cardiac episodes are expanding among larger groups.",
+        "Private equity and large cardiovascular platforms (US Heart & Vascular-style) are actively consolidating independent groups.",
+      ],
+    },
+    resources: [
+      {
+        name: "American College of Cardiology (ACC)",
+        blurb: "Clinical guidelines, registries, and practice resources",
+        url: "https://www.acc.org",
+        kind: "association",
+      },
+      {
+        name: "MedAxiom",
+        blurb: "Cardiovascular practice benchmarking and operations",
+        url: "https://www.medaxiom.com",
+        kind: "data",
+      },
+      {
+        name: "Cardiovascular Business",
+        blurb: "Reporting on cardiology economics and practice trends",
+        url: "https://cardiovascularbusiness.com",
+        kind: "publication",
+      },
+      ...COMMON_RESOURCES.slice(0, 3),
+    ],
+  },
+
+  pain_management: {
+    briefing: {
+      state:
+        "Interventional pain management is procedure-driven and unusually exposed to payer policy — LCDs, prior authorization, and periodic coverage changes for injections and neuromodulation can reset the revenue base quickly. Practices balance interventional procedures, medication management compliance, and ASC strategy under heavy regulatory scrutiny.",
+      trends: [
+        "Payer medical-policy changes and prior authorization for epidural and facet procedures directly reshape procedure volume and revenue.",
+        "Neuromodulation (SCS, peripheral nerve stimulation) is a growing, capital- and authorization-intensive line.",
+        "Controlled-substance compliance, PDMP, and DEA scrutiny make documentation and toxicology workflows operational necessities.",
+        "ASC and office-based procedure migration affects facility revenue and site-of-service strategy.",
+        "Multidisciplinary models (behavioral health, PT, regenerative offerings) are differentiators where reimbursement allows.",
+      ],
+    },
+    resources: [
+      {
+        name: "American Society of Interventional Pain Physicians (ASIPP)",
+        blurb: "Coding, coverage advocacy, and practice resources",
+        url: "https://www.asipp.org",
+        kind: "association",
+      },
+      {
+        name: "American Society of Regional Anesthesia & Pain Medicine (ASRA)",
+        blurb: "Clinical guidelines and education for pain medicine",
+        url: "https://www.asra.com",
+        kind: "society",
+      },
+      {
+        name: "Pain Medicine News",
+        blurb: "Trade reporting on interventional pain practice and policy",
+        url: "https://www.painmedicinenews.com",
+        kind: "publication",
+      },
+      ...COMMON_RESOURCES.slice(0, 3),
+    ],
+  },
 };

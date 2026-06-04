@@ -84,3 +84,13 @@
 - [x] Tests updated (11 specialties × 16 metrics, dossier coverage); 11/11 pass; typecheck clean
 - [x] Re-seed benchmarks and verify rows (176 rows, 11 specialties confirmed via SQL)
 - [x] Typecheck + tests, checkpoint (v7 cb8408c9)
+
+## v8 — Search indexing
+- [x] robots.txt route (allow all, point to sitemap, block /dashboard, /admin, /api/)
+- [x] Dynamic sitemap.xml route from real specialty + blog slugs (33 URLs)
+- [x] Registered before SPA catch-all; verified live via curl
+- [x] Organization + WebSite JSON-LD in index.html
+- [x] Per-post Article JSON-LD + canonical on BlogPost page
+- [x] useDocumentTitle extended for canonical + JSON-LD; canonical host www.aileronmd.com
+- [x] 6 SEO tests added; 17/17 pass; typecheck clean
+- [x] Explain Google Search Console submission to user (in delivery message)

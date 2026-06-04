@@ -11,7 +11,22 @@ const DEFAULT_TITLE = "AileronMD Consult — Operational Briefings";
  * unless the input already contains "AileronMD". If the title still ends up
  * shorter than 30 characters after the suffix, we fall back to the default.
  */
-export function useDocumentTitle(pageTitle: string, description?: string) {
+const CANONICAL_ORIGIN = "https://www.aileronmd.com";
+
+export interface DocumentMetaOptions {
+  /** Path (e.g. "/insights/foo") used to build the canonical URL. */
+  canonicalPath?: string;
+  /** Optional JSON-LD object injected as a managed <script> for this page. */
+  jsonLd?: Record<string, unknown>;
+}
+
+export function useDocumentTitle(
+  pageTitle: string,
+  description?: string,
+  options?: DocumentMetaOptions,
+) {
+  const canonicalPath = options?.canonicalPath;
+  const jsonLd = options?.jsonLd ? JSON.stringify(options.jsonLd) : undefined;
   useEffect(() => {
     const previousTitle = document.title;
     let next = pageTitle.trim();
@@ -21,6 +36,34 @@ export function useDocumentTitle(pageTitle: string, description?: string) {
       next = `${next}${SUFFIX}`;
     }
     document.title = next;
+
+    // Canonical link — update existing or create, restore on unmount.
+    let canonicalTag: HTMLLinkElement | null = null;
+    let previousCanonical: string | null = null;
+    let createdCanonical = false;
+    if (canonicalPath) {
+      canonicalTag = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+      const href = `${CANONICAL_ORIGIN}${canonicalPath}`;
+      if (!canonicalTag) {
+        canonicalTag = document.createElement("link");
+        canonicalTag.rel = "canonical";
+        document.head.appendChild(canonicalTag);
+        createdCanonical = true;
+      } else {
+        previousCanonical = canonicalTag.href;
+      }
+      canonicalTag.href = href;
+    }
+
+    // Per-page JSON-LD (e.g. Article schema for blog posts).
+    let ldTag: HTMLScriptElement | null = null;
+    if (jsonLd) {
+      ldTag = document.createElement("script");
+      ldTag.type = "application/ld+json";
+      ldTag.setAttribute("data-page-ld", "true");
+      ldTag.textContent = jsonLd;
+      document.head.appendChild(ldTag);
+    }
 
     let descTag = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -48,6 +91,16 @@ export function useDocumentTitle(pageTitle: string, description?: string) {
           descTag.content = previousDesc;
         }
       }
+      if (canonicalTag) {
+        if (createdCanonical) {
+          canonicalTag.remove();
+        } else if (previousCanonical !== null) {
+          canonicalTag.href = previousCanonical;
+        }
+      }
+      if (ldTag) {
+        ldTag.remove();
+      }
     };
-  }, [pageTitle, description]);
+  }, [pageTitle, description, canonicalPath, jsonLd]);
 }

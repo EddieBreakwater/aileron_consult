@@ -11,8 +11,28 @@ export default function BlogPost() {
   const post = trpc.blog.bySlug.useQuery({ slug: slug ?? "" }, { enabled: !!slug });
   const allPosts = trpc.blog.list.useQuery();
   useDocumentTitle(
-    post.data?.title ?? "Insights \u2014 Practice Operations",
+    post.data?.title ?? "Insights — Practice Operations",
     post.data?.excerpt ?? undefined,
+    post.data
+      ? {
+          canonicalPath: `/insights/${post.data.slug}`,
+          jsonLd: {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.data.title,
+            description: post.data.excerpt,
+            articleSection: post.data.category,
+            url: `https://www.aileronmd.com/insights/${post.data.slug}`,
+            mainEntityOfPage: `https://www.aileronmd.com/insights/${post.data.slug}`,
+            author: { "@type": "Organization", name: "AileronMD Consult" },
+            publisher: {
+              "@type": "Organization",
+              name: "AileronMD Consult",
+              url: "https://www.aileronmd.com/",
+            },
+          },
+        }
+      : undefined,
   );
 
   if (post.isLoading || allPosts.isLoading) {

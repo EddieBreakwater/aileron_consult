@@ -9,9 +9,7 @@ import { trpc } from "@/lib/trpc";
 import {
   ArrowRight,
   ArrowUpRight,
-  CalendarClock,
   ClipboardCheck,
-  FileText,
   LineChart,
   Sparkles,
 } from "lucide-react";
@@ -34,22 +32,14 @@ const PAIN_POINTS = [
 
 const TIMELINE = [
   {
-    days: "Day 1–5",
-    title: "Submit your numbers",
-    body: "Sixteen KPIs across six domains. Most clients copy them straight from their EHR in under twenty minutes.",
+    title: "You submit your numbers",
+    body: "Sixteen KPIs, copied straight from your EHR in about twenty minutes.",
     icon: ClipboardCheck,
   },
   {
-    days: "Day 6–15",
-    title: "A senior advisor reviews and writes",
-    body: "Your figures are scored against specialty peers. A senior advisor reads the month in context and writes the briefing in the voice physicians trust — direct, specific, and willing to take a position.",
+    title: "You get analysis and tactics",
+    body: "A senior advisor scores the month against your specialty, writes the briefing, and hands you a scorecard plus three ranked actions worth doing next.",
     icon: Sparkles,
-  },
-  {
-    days: "Day 16–20",
-    title: "You read the briefing",
-    body: "Three to four paragraphs. A scorecard. Three actions in priority order. Thirty minutes a month, not a binder.",
-    icon: FileText,
   },
 ];
 
@@ -216,17 +206,16 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
-                Operating rhythm
+                How it works
               </div>
               <h2 className="mt-3 font-serif text-3xl tracking-tight text-primary md:text-4xl">
-                Twenty days,
+                You send the data.
                 <br />
-                every month.
+                We send the answers.
               </h2>
               <p className="mt-5 max-w-md text-sm leading-7 text-muted-foreground">
-                The cadence is what compounds. We built the workflow so a busy practice manager
-                spends less than an hour a month and still sees real movement on the metrics that
-                matter.
+                You provide the numbers; we provide the analysis and the tactics. No dashboards to
+                tend, no reports to assemble.
               </p>
               <Button
                 asChild
@@ -251,16 +240,7 @@ export default function Home() {
                       <Icon className="h-5 w-5" />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-baseline justify-between">
-                        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
-                          {step.days}
-                        </div>
-                        <div className="font-mono text-[10px] text-muted-foreground">
-                          <CalendarClock className="mr-1 inline h-3 w-3" />
-                          monthly
-                        </div>
-                      </div>
-                      <h3 className="mt-1 font-serif text-xl text-primary">{step.title}</h3>
+                      <h3 className="font-serif text-xl text-primary">{step.title}</h3>
                       <p className="mt-1.5 text-sm leading-6 text-muted-foreground">{step.body}</p>
                     </div>
                   </article>

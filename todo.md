@@ -81,10 +81,6 @@
 - [x] Specialty dossiers (trends + curated resources) added
 - [x] Specialty cards + icons added to /specialties
 - [x] seedIfEmpty upgraded to idempotent backfill
-- [x] Tests updated (11 specialties × 16 metrics, dossier coverage); 11/11 pass; typecheck clean (Urology, Plastic Surgery, Radiology, Cardiology, Pain Management)
-- [ ] Add slugs+labels to SPECIALTIES in shared/aileron.ts
-- [ ] Add benchmark seed rows for each new specialty (server/_aileron/benchmarkSeeds.ts)
-- [ ] Add SPECIALTY_DOSSIERS entries (trends + curated resources) in shared/specialtyResources.ts
-- [ ] Add CARDS entries (icon, headline, body, benchmarks) in Specialties.tsx
-- [ ] Re-seed benchmarks (admin/seed endpoint) and verify rows
-- [ ] Typecheck + tests, checkpoint
+- [x] Tests updated (11 specialties × 16 metrics, dossier coverage); 11/11 pass; typecheck clean
+- [x] Re-seed benchmarks and verify rows (176 rows, 11 specialties confirmed via SQL)
+- [x] Typecheck + tests, checkpoint (v7 cb8408c9)

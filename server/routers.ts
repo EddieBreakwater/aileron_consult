@@ -7,6 +7,9 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { generateBriefing } from "./_aileron/briefingGenerator";
+import { getDb } from "./db";
+import { briefings } from "../drizzle/schema";
+import { eq } from "drizzle-orm";
 import { BENCHMARK_SEEDS } from "./_aileron/benchmarkSeeds";
 import {
   bulkInsertBenchmarks,
@@ -32,6 +35,27 @@ import {
 } from "./db";
 
 const specialtySlugs = SPECIALTIES.map(s => s.slug) as [string, ...string[]];
+
+// Simple in-memory rate limiter for contact form (IP-based, 60s window)
+const contactRateLimits = new Map<string, number>();
+function checkContactRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const lastCall = contactRateLimits.get(ip);
+  if (lastCall && now - lastCall < 60000) {
+    return false; // Rate limited
+  }
+  contactRateLimits.set(ip, now);
+  // Cleanup old entries every 100 calls
+  if (contactRateLimits.size > 1000) {
+    const cutoff = now - 120000;
+    const keysToDelete: string[] = [];
+    contactRateLimits.forEach((v, k) => {
+      if (v < cutoff) keysToDelete.push(k);
+    });
+    keysToDelete.forEach(k => contactRateLimits.delete(k));
+  }
+  return true;
+}
 
 const optionalNumber = z
   .union([z.number(), z.string().regex(/^-?\d+(\.\d+)?$/)])
@@ -248,9 +272,26 @@ export const appRouter = router({
           executiveSummary: generated.executiveSummary,
           narrative: generated.narrative,
           recommendations: generated.recommendations,
-          status: "published",
+          status: "draft",
         });
         return inserted;
+      }),
+
+    approve: adminProcedure
+      .input(z.object({ id: z.number().int() }))
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+        const briefing = await getBriefingById(input.id);
+        if (!briefing) throw new TRPCError({ code: "NOT_FOUND", message: "Briefing not found" });
+        if (briefing.status === "published") {
+          throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Briefing already published" });
+        }
+        await db
+          .update(briefings)
+          .set({ status: "published" })
+          .where(eq(briefings.id, input.id));
+        return { success: true };
       }),
   }),
 
@@ -278,6 +319,16 @@ export const appRouter = router({
     practices: adminProcedure.query(() => listAllPractices()),
     submissions: adminProcedure.query(() => listAllKpiSubmissions()),
     briefings: adminProcedure.query(() => listAllBriefings()),
+    approveBriefing: adminProcedure
+      .input(z.object({ briefingId: z.number().int() }))
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+        const briefing = await getBriefingById(input.briefingId);
+        if (!briefing) throw new TRPCError({ code: "NOT_FOUND", message: "Briefing not found" });
+        await db.update(briefings).set({ status: "published" }).where(eq(briefings.id, input.briefingId));
+        return { success: true, briefingId: input.briefingId };
+      }),
     benchmarks: adminProcedure.query(() => getAllBenchmarks()),
 
     upsertBenchmark: adminProcedure
@@ -350,6 +401,33 @@ export const appRouter = router({
           recommendations: generated.recommendations,
           status: "published",
         });
+      }),
+  }),
+
+  contact: router({
+    submit: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1).max(255),
+          email: z.string().email(),
+          practice: z.string().max(255).optional().nullable(),
+          message: z.string().min(1).max(5000),
+        }),
+      )
+      .mutation(async ({ input, ctx }) => {
+        const ip = (ctx.req.headers["x-forwarded-for"] as string) || ctx.req.socket.remoteAddress || "unknown";
+        if (!checkContactRateLimit(ip)) {
+          throw new TRPCError({
+            code: "TOO_MANY_REQUESTS",
+            message: "Please wait before sending another message.",
+          });
+        }
+        const { notifyOwner: notifyOwnerFn } = await import("./_core/notification");
+        const delivered = await notifyOwnerFn({
+          title: `New AileronMD inquiry from ${input.name}`,
+          content: `From: ${input.name} <${input.email}>\nPractice: ${input.practice || "—"}\n\n${input.message}`,
+        });
+        return { success: delivered };
       }),
   }),
 });

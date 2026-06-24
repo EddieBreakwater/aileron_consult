@@ -94,3 +94,9 @@
 - [x] useDocumentTitle extended for canonical + JSON-LD; canonical host www.aileronmd.com
 - [x] 6 SEO tests added; 17/17 pass; typecheck clean
 - [x] Explain Google Search Console submission to user (in delivery message)
+
+## Tier 2 — Production hardening
+- [x] Briefing draft > review > publish workflow (briefing.generate saves as draft, briefing.approve publishes)
+- [x] Rate-limit Contact form (contact.submit endpoint added to appRouter with IP-based 60s throttle)
+- [x] OG/Twitter share image + favicon (1200x630 + 512x512, wired to index.html meta tags)
+- [x] Typecheck clean, 17/17 tests pass, checkpoint ready

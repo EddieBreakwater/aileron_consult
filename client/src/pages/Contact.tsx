@@ -15,7 +15,7 @@ export default function Contact() {
   );
   const [form, setForm] = useState({ name: "", email: "", practice: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const notify = trpc.system.notifyOwner.useMutation();
+  const submit = trpc.contact.submit.useMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,13 +24,20 @@ export default function Contact() {
       return;
     }
     try {
-      await notify.mutateAsync({
-        title: `New AileronMD inquiry — ${form.name}`,
-        content: `From: ${form.name} <${form.email}>\nPractice: ${form.practice || "—"}\n\n${form.message}`,
+      await submit.mutateAsync({
+        name: form.name,
+        email: form.email,
+        practice: form.practice || null,
+        message: form.message,
       });
       setSubmitted(true);
-    } catch {
-      toast.error("Could not send. Try emailing us at hello@aileronmd.com.");
+    } catch (err) {
+      const error = err as any;
+      if (error?.data?.code === "TOO_MANY_REQUESTS") {
+        toast.error("Please wait a moment before sending another message.");
+      } else {
+        toast.error("Could not send. Try emailing us at hello@aileronmd.com.");
+      }
     }
   };
 
@@ -117,9 +124,9 @@ export default function Contact() {
                   type="submit"
                   size="lg"
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/92"
-                  disabled={notify.isPending}
+                  disabled={submit.isPending}
                 >
-                  {notify.isPending ? "Sending..." : "Send message"}
+                  {submit.isPending ? "Sending..." : "Send message"}
                 </Button>
 
                 <p className="text-center text-xs text-muted-foreground">

@@ -16,7 +16,17 @@ import { Link } from "wouter";
 export default function AdminBriefings() {
   const briefings = trpc.admin.briefings.useQuery();
   const practices = trpc.admin.practices.useQuery();
+  const approveMutation = trpc.briefing.approve.useMutation();
   const practiceMap = new Map((practices.data ?? []).map(p => [p.id, p]));
+
+  const handleApprove = async (briefingId: number) => {
+    try {
+      await approveMutation.mutateAsync({ id: briefingId });
+      briefings.refetch();
+    } catch (err) {
+      console.error("Failed to approve briefing:", err);
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -28,7 +38,7 @@ export default function AdminBriefings() {
           <h1 className="mt-1 font-serif text-3xl tracking-tight text-primary md:text-4xl">
             Briefings
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">All published briefings across the platform.</p>
+          <p className="mt-2 text-sm text-muted-foreground">All briefings (draft and published) across the platform.</p>
         </div>
 
         <div className="overflow-hidden rounded-xl border border-border/70 bg-card">
@@ -47,7 +57,7 @@ export default function AdminBriefings() {
                   <TableHead>Title</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Generated</TableHead>
-                  <TableHead className="text-right">Open</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -68,8 +78,8 @@ export default function AdminBriefings() {
                       <TableCell className="max-w-[320px] truncate text-sm">{b.title}</TableCell>
                       <TableCell>
                         <Badge
-                          variant="outline"
-                          className="border-accent/30 bg-accent/5 capitalize text-accent"
+                          variant={b.status === "draft" ? "secondary" : "outline"}
+                          className={b.status === "draft" ? "bg-yellow-50 text-yellow-700" : "border-accent/30 bg-accent/5 capitalize text-accent"}
                         >
                           {b.status}
                         </Badge>
@@ -77,7 +87,17 @@ export default function AdminBriefings() {
                       <TableCell className="text-xs text-muted-foreground">
                         {new Date(b.generatedAt).toLocaleDateString()}
                       </TableCell>
-                      <TableCell className="text-right">
+                      <TableCell className="text-right space-x-2 flex justify-end">
+                        {b.status === "draft" && (
+                          <Button
+                            size="sm"
+                            variant="default"
+                            onClick={() => handleApprove(b.id)}
+                            disabled={approveMutation.isPending}
+                          >
+                            {approveMutation.isPending ? "Publishing..." : "Publish"}
+                          </Button>
+                        )}
                         <Button asChild size="sm" variant="outline">
                           <Link href={`/dashboard/briefing/${b.id}`}>Open</Link>
                         </Button>

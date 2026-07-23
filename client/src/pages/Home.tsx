@@ -2,7 +2,7 @@ import { AileronMark } from "@/components/AileronMark";
 import { PublicLayout } from "@/components/PublicLayout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getLoginUrl } from "@/const";
+import { getLoginUrl, getSignupUrl } from "@/const";
 import { SPECIALTIES } from "@shared/aileron";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { trpc } from "@/lib/trpc";
@@ -79,14 +79,12 @@ export default function Home() {
 
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 <Button
-                  asChild
                   size="lg"
                   className="bg-primary text-primary-foreground hover:bg-primary/92"
+                  onClick={() => window.location.href = getSignupUrl()}
                 >
-                  <Link href="/pricing">
-                    Start a 30-day trial
-                    <ArrowRight className="ml-1.5 h-4 w-4" />
-                  </Link>
+                  Start a 30-day trial
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Button>
                 <Button
                   asChild

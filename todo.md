@@ -100,3 +100,8 @@
 - [x] Rate-limit Contact form (contact.submit endpoint added to appRouter with IP-based 60s throttle)
 - [x] OG/Twitter share image + favicon (1200x630 + 512x512, wired to index.html meta tags)
 - [x] Typecheck clean, 17/17 tests pass, checkpoint ready
+
+## Signup flow fix
+- [x] Add getSignupUrl() function to const.ts (type=signUp)
+- [x] Wire "Start a 30-day trial" button to getSignupUrl() instead of /pricing
+- [x] Typecheck clean

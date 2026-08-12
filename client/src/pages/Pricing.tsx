@@ -1,9 +1,11 @@
 import { PublicLayout } from "@/components/PublicLayout";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Button } from "@/components/ui/button";
-import { getLoginUrl } from "@/const";
+import { getSignupUrl } from "@/const";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
 const TIERS = [
@@ -39,16 +41,16 @@ const TIERS = [
 
 const FAQ = [
   {
-    q: "What if my specialty isn’t one of the six?",
-    a: "We open new specialties as we hit a sufficient sample size. Tell us yours on the contact form — we move new specialties in priority order based on demand.",
+    q: "What if my specialty isn't listed?",
+    a: "We open new specialties as we hit a sufficient sample size. Tell us yours on the contact form. We move new specialties in priority order based on demand.",
   },
   {
     q: "How is this different from a fractional COO?",
-    a: "A fractional COO costs $150k–$250k per year and takes six months to ramp. AileronMD gives you specialty-benchmarked clarity every month for $199. It’s the operating layer most practices actually need.",
+    a: "A fractional COO costs $150k to $250k per year and takes six months to ramp. AileronMD gives you specialty-benchmarked clarity every month for $199. It's the operating layer most practices actually need.",
   },
   {
     q: "Do you replace MGMA?",
-    a: "Not exactly. MGMA gives you industry averages once a year. We give you a monthly specialty-specific read with action items. They’re complementary; most clients keep both.",
+    a: "Not exactly. MGMA gives you industry averages once a year. We give you a monthly specialty-specific read with action items. They're complementary; most clients keep both.",
   },
   {
     q: "Can I cancel?",
@@ -65,68 +67,76 @@ export default function Pricing() {
 
   return (
     <PublicLayout>
-      <section className="border-b border-border/60 bg-secondary/30">
-        <div className="container py-20 text-center">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
-            Pricing
-          </div>
-          <h1 className="mt-3 font-serif text-4xl tracking-tight text-primary md:text-5xl">
-            Less than one missed appointment.
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-            Flat monthly pricing. No setup fees. Cancel any time. The first thirty days are free
-            so you can read a real briefing before you commit.
-          </p>
+      <section className="border-b border-border/40 hero-ambient relative overflow-hidden">
+        <div className="container py-24 text-center">
+          <ScrollReveal>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+              Pricing
+            </div>
+            <h1 className="mt-3 font-serif text-4xl tracking-tight text-primary md:text-5xl">
+              Less than one missed appointment.
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
+              Flat monthly pricing. No setup fees. Cancel any time. The first thirty days are free
+              so you can read a real briefing before you commit.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
-      <section className="border-b border-border/60">
-        <div className="container py-20">
+      <section className="border-b border-border/40">
+        <div className="container py-24">
           <div className="grid gap-8 md:grid-cols-2">
-            {TIERS.map(tier => (
-              <article
-                key={tier.id}
-                className={`lift relative rounded-2xl border p-8 ${
-                  tier.highlight
-                    ? "border-accent/40 bg-card shadow-[0_30px_60px_-30px_oklch(0.500_0.080_197/0.35)]"
-                    : "border-border/70 bg-card"
-                }`}
-              >
-                {tier.highlight && (
-                  <div className="absolute -top-3 right-6 rounded-full bg-accent px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent-foreground">
-                    Most chosen
-                  </div>
-                )}
-                <div className="font-serif text-xl text-primary">{tier.name}</div>
-                <p className="mt-1.5 text-sm text-muted-foreground">{tier.description}</p>
-                <div className="mt-6 flex items-baseline gap-1.5">
-                  <span className="num font-serif text-5xl text-primary">${tier.price}</span>
-                  <span className="text-sm text-muted-foreground">/ month</span>
-                </div>
-                <Button
-                  asChild
-                  size="lg"
-                  className={`mt-7 w-full ${
+            {TIERS.map((tier, i) => (
+              <ScrollReveal key={tier.id} delay={i * 150}>
+                <article
+                  className={`group relative rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 ${
                     tier.highlight
-                      ? "bg-accent text-accent-foreground hover:bg-accent/90"
-                      : "bg-primary text-primary-foreground hover:bg-primary/92"
+                      ? "border-accent/40 bg-white shadow-[0_30px_60px_-30px_oklch(0.500_0.080_197/0.25)] glow-teal"
+                      : "border-border/50 bg-white hover:border-accent/20 hover:shadow-lg hover:shadow-accent/5"
                   }`}
                 >
-                  {isAuthenticated ? (
-                    <Link href="/dashboard">Set up your practice</Link>
-                  ) : (
-                    <a href={getLoginUrl()}>Start 30-day trial</a>
+                  {tier.highlight && (
+                    <div className="absolute -top-3 right-6 rounded-full bg-accent px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent-foreground">
+                      Most chosen
+                    </div>
                   )}
-                </Button>
-                <ul className="mt-7 space-y-3 text-sm">
-                  {tier.features.map(f => (
-                    <li key={f} className="flex items-start gap-2.5">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                      <span className="text-foreground/85">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+                  <div className="font-serif text-xl text-primary">{tier.name}</div>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{tier.description}</p>
+                  <div className="mt-6 flex items-baseline gap-1.5">
+                    <span className="font-serif text-5xl text-primary">
+                      $<AnimatedCounter end={tier.price} duration={1500} />
+                    </span>
+                    <span className="text-sm text-muted-foreground">/ month</span>
+                  </div>
+                  <Button
+                    size="lg"
+                    className={`btn-press mt-7 w-full ${
+                      tier.highlight
+                        ? "bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/20"
+                        : "bg-primary text-primary-foreground hover:bg-primary/92"
+                    }`}
+                    onClick={() => {
+                      if (isAuthenticated) {
+                        window.location.href = "/dashboard";
+                      } else {
+                        window.location.href = getSignupUrl();
+                      }
+                    }}
+                  >
+                    Start 30-day trial
+                    <ArrowRight className="ml-1.5 h-4 w-4" />
+                  </Button>
+                  <ul className="mt-7 space-y-3 text-sm">
+                    {tier.features.map(f => (
+                      <li key={f} className="flex items-start gap-2.5">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                        <span className="text-foreground/85">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </ScrollReveal>
             ))}
           </div>
 
@@ -138,14 +148,18 @@ export default function Pricing() {
 
       {/* FAQ */}
       <section>
-        <div className="container py-20">
-          <h2 className="font-serif text-3xl tracking-tight text-primary">Common questions</h2>
-          <div className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
-            {FAQ.map(item => (
-              <div key={item.q}>
-                <div className="font-serif text-lg text-primary">{item.q}</div>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.a}</p>
-              </div>
+        <div className="container py-24">
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl tracking-tight text-primary">Common questions</h2>
+          </ScrollReveal>
+          <div className="mt-12 grid gap-x-12 gap-y-8 md:grid-cols-2">
+            {FAQ.map((item, i) => (
+              <ScrollReveal key={item.q} delay={i * 80}>
+                <div className="group">
+                  <div className="font-serif text-lg text-primary group-hover:text-accent transition-colors">{item.q}</div>
+                  <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.a}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

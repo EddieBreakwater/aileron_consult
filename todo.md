@@ -105,3 +105,25 @@
 - [x] Add getSignupUrl() function to const.ts (type=signUp)
 - [x] Wire "Start a 30-day trial" button to getSignupUrl() instead of /pricing
 - [x] Typecheck clean
+
+## 10x Engagement Overhaul
+- [x] Animated hero with typewriter effect and floating data particles (canvas)
+- [x] Interactive briefing preview card with hover glow and animated KPI counters
+- [x] Scroll-driven section reveals with staggered fade-in (ScrollReveal component)
+- [x] Animated number counters for stats bar (AnimatedCounter component)
+- [x] Glassmorphism cards (glass, glass-dark utilities) and backdrop-blur depth
+- [x] Hover micro-interactions: glow-teal, glow-navy, shadow-lift, scale, translate-y
+- [x] Animated specialty grid with pulse-soft icon effects
+- [x] Floating particles canvas on hero background
+- [x] Interactive before/after comparison section on Home
+- [x] Floating testimonial quote card on HowItWorks
+- [x] Dashboard KPI cards with stagger-children entrance and hover effects
+- [x] btn-press active:scale feedback on all buttons
+- [x] Gradient text accents (gradient-text, gradient-text-teal)
+- [x] Ambient hero-ambient gradient backgrounds
+- [x] CTA sections with animated-border utility and glow effects
+- [x] SiteHeader trial CTA now triggers signup directly
+- [x] Pricing page with scroll reveals and animated price counters
+- [x] HowItWorks with scroll reveals, floating quote, gradient text
+- [x] prefers-reduced-motion respected across all animations
+- [x] TypeScript clean, 17/17 tests pass

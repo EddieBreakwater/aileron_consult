@@ -1,4 +1,6 @@
 import DashboardLayout from "@/components/DashboardLayout";
+import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { PracticeProfileForm } from "@/components/PracticeProfileForm";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -136,8 +138,8 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Top stats row */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+       {/* Top stats row */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 stagger-children">
           <StatCard
             label="Latest period"
             value={monthLabel ?? "No submission yet"}
@@ -148,9 +150,9 @@ export default function Dashboard() {
           <StatCard label="Flags" value={String(flag)} accent="flag" sublabel="Need this month’s focus" />
         </div>
 
-        {/* Latest briefing card */}
+       {/* Latest briefing card */}
         <section className="grid gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2 rounded-2xl border border-border/70 bg-card p-7">
+          <div className="lg:col-span-2 rounded-2xl border border-border/50 bg-card p-7 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:border-accent/20">
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
@@ -187,7 +189,7 @@ export default function Dashboard() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-border/70 bg-card p-7">
+          <div className="rounded-2xl border border-border/50 bg-card p-7 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:border-accent/20">
             <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
               Quick actions
             </div>
@@ -244,8 +246,8 @@ export default function Dashboard() {
                 Full scorecard →
               </Link>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {KPI_DEFINITIONS.slice(0, 8).map(def => {
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 stagger-children">
+             {KPI_DEFINITIONS.slice(0, 8).map(def => {
                 const raw = (latestKpi.data as Record<string, unknown>)[def.key];
                 const num = raw == null ? null : Number(raw);
                 const b = benchMap.get(def.key);
@@ -263,7 +265,7 @@ export default function Dashboard() {
                 return (
                   <div
                     key={def.key}
-                    className="rounded-lg border border-border/70 bg-card px-4 py-3.5"
+                    className="group rounded-xl border border-border/50 bg-card px-4 py-4 transition-all duration-300 hover:border-accent/30 hover:shadow-md hover:shadow-accent/5 hover:-translate-y-0.5"
                   >
                     <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
                       {def.short}
@@ -321,8 +323,16 @@ function StatCard({
         : accent === "flag"
           ? "text-destructive"
           : "text-primary";
+  const borderHover =
+    accent === "good"
+      ? "hover:border-accent/40"
+      : accent === "watch"
+        ? "hover:border-amber-400/40"
+        : accent === "flag"
+          ? "hover:border-destructive/40"
+          : "hover:border-accent/20";
   return (
-    <div className="rounded-xl border border-border/70 bg-card p-5">
+    <div className={`rounded-xl border border-border/50 bg-card p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 ${borderHover}`}>
       <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
         {label}
       </div>

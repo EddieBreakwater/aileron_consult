@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { getLoginUrl } from "@/const";
+import { getLoginUrl, getSignupUrl } from "@/const";
 import { Link, useLocation } from "wouter";
 import { AileronMark } from "@/components/AileronMark";
 
@@ -69,11 +69,11 @@ export function SiteHeader() {
                 Sign in
               </a>
               <Button
-                asChild
                 size="sm"
                 className="bg-primary text-primary-foreground hover:bg-primary/92"
+                onClick={() => (window.location.href = getSignupUrl())}
               >
-                <Link href="/pricing">Start a trial</Link>
+                Start a trial
               </Button>
             </>
           )}

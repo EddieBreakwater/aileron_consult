@@ -1,3 +1,4 @@
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { PublicLayout } from "@/components/PublicLayout";
 import { Button } from "@/components/ui/button";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
@@ -192,11 +193,11 @@ export default function Specialties() {
 
   return (
     <PublicLayout>
-      <section className="border-b border-border/60 bg-secondary/30">
+      <section className="border-b border-border/40 hero-ambient relative overflow-hidden">
         <div className="container py-20">
           <div className="max-w-3xl">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
-              Six specialties, calibrated separately
+              Eleven specialties, calibrated separately
             </div>
             <h1 className="mt-3 font-serif text-4xl tracking-tight text-primary md:text-5xl">
               Your benchmark should match your business model.
@@ -221,7 +222,7 @@ export default function Specialties() {
                 <article
                   key={card.slug}
                   id={card.slug}
-                  className="scroll-mt-28 overflow-hidden rounded-2xl border border-border/70 bg-card"
+                  className="scroll-mt-28 overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-300 hover:border-accent/20 hover:shadow-lg hover:shadow-accent/5"
                 >
                   {/* Header band */}
                   <header className="flex flex-wrap items-start justify-between gap-4 border-b border-border/60 bg-secondary/30 px-7 py-6">

@@ -1,5 +1,6 @@
 import { PublicLayout } from "@/components/PublicLayout";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { VideoEmbed } from "@/components/VideoEmbed";
 import { Button } from "@/components/ui/button";
 import { getSignupUrl } from "@/const";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
@@ -129,6 +130,17 @@ export default function HowItWorks() {
                   </ul>
                 </div>
               </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* VIDEO WALKTHROUGH */}
+      <section className="border-b border-border/40 bg-secondary/20">
+        <div className="container py-20">
+          <ScrollReveal>
+            <div className="mx-auto max-w-4xl">
+              <VideoEmbed />
             </div>
           </ScrollReveal>
         </div>

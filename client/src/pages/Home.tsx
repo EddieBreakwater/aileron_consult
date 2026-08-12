@@ -1,6 +1,7 @@
 import { AileronMark } from "@/components/AileronMark";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { FloatingParticles } from "@/components/FloatingParticles";
+import { ScarcityCounter } from "@/components/ScarcityCounter";
 import { PublicLayout } from "@/components/PublicLayout";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Badge } from "@/components/ui/badge";
@@ -593,6 +594,9 @@ export default function Home() {
                 We onboard a small number of practices each month so every briefing gets a senior
                 set of eyes before it ships. Join the next cohort.
               </p>
+              <div className="mt-4 flex justify-center">
+                <ScarcityCounter />
+              </div>
               <div className="mt-9 flex flex-wrap justify-center gap-3">
                 <Button
                   size="lg"

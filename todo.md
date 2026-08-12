@@ -127,3 +127,9 @@
 - [x] HowItWorks with scroll reveals, floating quote, gradient text
 - [x] prefers-reduced-motion respected across all animations
 - [x] TypeScript clean, 17/17 tests pass
+
+## v10 — Video, scarcity, page transitions
+- [x] Video walkthrough embed on "What you get" page (Loom-style placeholder with play button)
+- [x] Scarcity counter component ("X of 5 spots remaining this month") on Pricing and Home CTA
+- [x] Framer Motion AnimatePresence page transitions (fade + slide)
+- [x] Typecheck clean, 17/17 tests pass

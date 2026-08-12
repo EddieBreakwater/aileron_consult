@@ -1,5 +1,6 @@
 import { PublicLayout } from "@/components/PublicLayout";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { ScarcityCounter } from "@/components/ScarcityCounter";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Button } from "@/components/ui/button";
 import { getSignupUrl } from "@/const";
@@ -80,6 +81,9 @@ export default function Pricing() {
               Flat monthly pricing. No setup fees. Cancel any time. The first thirty days are free
               so you can read a real briefing before you commit.
             </p>
+            <div className="mt-5 flex justify-center">
+              <ScarcityCounter />
+            </div>
           </ScrollReveal>
         </div>
       </section>

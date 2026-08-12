@@ -96,7 +96,18 @@ const TABS = Object.keys(EHR_GUIDES);
 export default function Resources() {
   useDocumentTitle(
     "EHR Reporting Guide \u2014 Native Reports",
-    "How to pull every AileronMD KPI from the EHR you already pay for: Epic, athenahealth, eClinicalWorks, NextGen, Cerner Oracle, and Practice Fusion.",
+    "Step-by-step instructions for extracting monthly KPI numbers from Epic, Athenahealth, eClinicalWorks, and NextGen for AileronMD Consult submission.",
+    {
+      canonicalPath: "/resources",
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aileronmd.com" },
+          { "@type": "ListItem", "position": 2, "name": "Resources & EHR Guide", "item": "https://www.aileronmd.com/resources" }
+        ]
+      }
+    }
   );
   const [tab, setTab] = useState("Epic");
 

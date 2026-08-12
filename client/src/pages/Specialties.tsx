@@ -176,8 +176,19 @@ const KIND_LABEL: Record<SpecialtyResource["kind"], string> = {
 
 export default function Specialties() {
   useDocumentTitle(
-    "Specialty Benchmarks & Resources",
-    "Specialty-specific benchmarks, current trends, and curated links to MGMA, Becker's, AGA, ASGE, AAOS, AAO, ASCO, AAFP and other trusted resources.",
+    "Specialties \u2014 Benchmarks & Operational Trends",
+    "Explore calibrated benchmark medians, peer percentiles, and current operational trends across 11 medical specialties.",
+    {
+      canonicalPath: "/specialties",
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aileronmd.com" },
+          { "@type": "ListItem", "position": 2, "name": "Specialties", "item": "https://www.aileronmd.com/specialties" }
+        ]
+      }
+    }
   );
 
   // Scroll to the specialty section referenced in the URL hash (e.g. /specialties#gastroenterology)

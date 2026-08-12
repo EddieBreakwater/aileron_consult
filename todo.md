@@ -133,3 +133,12 @@
 - [x] Scarcity counter component ("X of 5 spots remaining this month") on Pricing and Home CTA
 - [x] Framer Motion AnimatePresence page transitions (fade + slide)
 - [x] Typecheck clean, 17/17 tests pass
+
+## 10x SEO Overhaul (v11)
+- [x] Comprehensive SEO audit of current site structure, metadata, schema, and sitemap
+- [x] Define high-intent physician practice management search intent clusters
+- [x] Implement enhanced structured data (BreadcrumbList, FAQPage, MedicalBusiness / Organization schema via JSON-LD)
+- [x] Expand internal linking across specialties, resources, blog, and pricing
+- [x] Enhance on-page semantic keyword targeting and meta descriptions for Home, Specialties, Pricing, Resources, and Blog
+- [x] Validate robots.txt and dynamic sitemap.xml (33+ URLs) with live tests (17/17 pass)
+- [x] Run build check (TypeScript 0 errors), SEO unit tests, and save checkpoint

@@ -279,6 +279,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* VALUE WALKTHROUGH VIDEO */}
+      <section className="relative overflow-hidden border-b border-border/40 bg-secondary/25">
+        <div className="container py-20 md:py-24">
+          <ScrollReveal>
+            <div className="mx-auto max-w-2xl text-center">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+                See the deliverable
+              </div>
+              <h2 className="mt-3 font-serif text-3xl tracking-tight text-primary md:text-4xl lg:text-5xl">
+                A clearer month, in just over a minute.
+              </h2>
+              <p className="mt-5 text-base leading-7 text-muted-foreground md:text-lg">
+                See how a short KPI submission becomes a specialty-benchmarked scorecard,
+                practical context, and a focused list of next moves.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={130}>
+            <figure className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl border border-primary/15 bg-primary shadow-[0_30px_80px_-24px_oklch(0.339_0.057_244/0.35)]">
+              <video
+                className="block aspect-video w-full bg-primary object-cover"
+                controls
+                playsInline
+                preload="metadata"
+                aria-label="AileronMD Consult value walkthrough"
+              >
+                <source
+                  src="/manus-storage/aileron-value-video-branded-final_29121ff8.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <figcaption className="flex flex-col gap-1 border-t border-white/10 bg-primary px-6 py-4 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
+                <span>What a monthly AileronMD Consult briefing brings into focus.</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7ED3D1]">
+                  1 minute, 13 seconds
+                </span>
+              </figcaption>
+            </figure>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* STATS BAR */}
       <section className="border-b border-border/40 bg-primary">
         <div className="container py-10">

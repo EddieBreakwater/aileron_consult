@@ -142,3 +142,14 @@
 - [x] Enhance on-page semantic keyword targeting and meta descriptions for Home, Specialties, Pricing, Resources, and Blog
 - [x] Validate robots.txt and dynamic sitemap.xml (33+ URLs) with live tests (17/17 pass)
 - [x] Run build check (TypeScript 0 errors), SEO unit tests, and save checkpoint
+
+## Value video brand cards
+- [x] Create an AileronMD opening logo card
+- [x] Create a matching closing logo and tagline card
+- [x] Integrate cards without cutting off the full voiceover
+- [x] Verify final video duration and single audio stream (73.3 seconds)
+
+## Homepage walkthrough video
+- [x] Upload the branded AileronMD value video for web delivery
+- [x] Embed the video in a responsive section directly after the homepage hero
+- [x] Verify video embed, typecheck, and tests (18/18 pass); checkpoint ready

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getSignupUrl } from "@/const";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, CalendarCheck2, ReceiptText, UsersRound } from "lucide-react";
 import { Link } from "wouter";
 
 const TIERS = [
@@ -16,11 +16,11 @@ const TIERS = [
     price: 199,
     description: "For independent practices with up to two providers.",
     features: [
-      "One monthly operating briefing",
-      "16 KPIs across 6 domains",
-      "Specialty-benchmarked scoring",
-      "Briefing history archive",
-      "Email support, two business days",
+      "One advisor-curated operating read each month",
+      "16 KPIs across access, revenue cycle, schedule, and capacity",
+      "Specialty-benchmarked scorecard and operating context",
+      "Three ranked actions for the next leadership meeting",
+      "Briefing history for month-to-month continuity",
     ],
     highlight: false,
   },
@@ -31,10 +31,10 @@ const TIERS = [
     description: "For practices with three to ten providers.",
     features: [
       "Everything in Solo",
-      "Up to ten providers tracked",
-      "Provider-level KPI breakouts (coming Q3)",
-      "Quarterly trend review call",
-      "Email support, one business day",
+      "Up to ten providers in the monthly operating read",
+      "Group-level access, revenue-cycle, and capacity context",
+      "Quarterly trend conversation",
+      "Priority email support",
     ],
     highlight: true,
   },
@@ -47,15 +47,33 @@ const FAQ = [
   },
   {
     q: "How is this different from a fractional COO?",
-    a: "A fractional COO costs $150k to $250k per year and takes six months to ramp. AileronMD gives you specialty-benchmarked clarity every month for $199. It's the operating layer most practices actually need.",
+    a: "A fractional COO actively executes work inside the practice. AileronMD gives physician leaders an external monthly operating read: the signals, the specialty context, and the few decisions worth putting on the leadership agenda.",
   },
   {
     q: "Do you replace MGMA?",
-    a: "Not exactly. MGMA gives you industry averages once a year. We give you a monthly specialty-specific read with action items. They're complementary; most clients keep both.",
+    a: "They serve different purposes. Benchmark resources provide useful reference data. AileronMD uses monthly practice KPIs and specialty context to frame the operating questions and next actions for your own practice.",
   },
   {
     q: "Can I cancel?",
     a: "Yes, any time. Your historical briefings remain accessible to you forever, even after cancellation.",
+  },
+];
+
+const OPERATING_USE_CASES = [
+  {
+    icon: CalendarCheck2,
+    title: "Access is widening",
+    body: "Bring third-next-available, cancellations, and no-shows into one conversation before adding hours or changing a template.",
+  },
+  {
+    icon: ReceiptText,
+    title: "Cash is slowing",
+    body: "Read Days in A/R, collections, and denials together to identify where the revenue cycle needs focused attention.",
+  },
+  {
+    icon: UsersRound,
+    title: "The team feels stretched",
+    body: "Use visits, staffing signals, provider volume, and schedule integrity to clarify where the operating load is actually landing.",
   },
 ];
 
@@ -75,11 +93,11 @@ export default function Pricing() {
               Pricing
             </div>
             <h1 className="mt-3 font-serif text-4xl tracking-tight text-primary md:text-5xl">
-              Less than one missed appointment.
+              A monthly operating read, built around your practice.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-              Flat monthly pricing. No setup fees. Cancel any time. The first thirty days are free
-              so you can read a real briefing before you commit.
+              Flat monthly pricing for a concise, advisor-curated briefing that keeps access,
+              revenue cycle, schedule flow, and provider capacity in view.
             </p>
             <div className="mt-5 flex justify-center">
               <ScarcityCounter />
@@ -100,11 +118,6 @@ export default function Pricing() {
                       : "border-border/50 bg-white hover:border-accent/20 hover:shadow-lg hover:shadow-accent/5"
                   }`}
                 >
-                  {tier.highlight && (
-                    <div className="absolute -top-3 right-6 rounded-full bg-accent px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent-foreground">
-                      Most chosen
-                    </div>
-                  )}
                   <div className="font-serif text-xl text-primary">{tier.name}</div>
                   <p className="mt-1.5 text-sm text-muted-foreground">{tier.description}</p>
                   <div className="mt-6 flex items-baseline gap-1.5">
@@ -147,6 +160,34 @@ export default function Pricing() {
           <p className="mt-10 text-center text-xs text-muted-foreground">
             Larger groups (10+ providers) — <Link href="/contact" className="text-primary underline-offset-4 hover:underline">talk to us about an enterprise plan</Link>.
           </p>
+        </div>
+      </section>
+
+      <section className="border-b border-border/40 bg-secondary/25">
+        <div className="container py-24">
+          <ScrollReveal>
+            <div className="max-w-2xl">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+                What the monthly read supports
+              </div>
+              <h2 className="mt-3 font-serif text-3xl tracking-tight text-primary md:text-4xl">
+                Useful when the day-to-day questions start to stack up.
+              </h2>
+            </div>
+          </ScrollReveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {OPERATING_USE_CASES.map(({ icon: Icon, title, body }, index) => (
+              <ScrollReveal key={title} delay={index * 90}>
+                <article className="group h-full rounded-2xl border border-border/50 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/6 text-primary transition-all group-hover:scale-110 group-hover:bg-accent/12 group-hover:text-accent">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 font-serif text-xl text-primary">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{body}</p>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

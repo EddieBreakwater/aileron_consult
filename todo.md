@@ -153,3 +153,10 @@
 - [x] Upload the branded AileronMD value video for web delivery
 - [x] Embed the video in a responsive section directly after the homepage hero
 - [x] Verify video embed, typecheck, and tests (18/18 pass); checkpoint ready
+
+## Operations-focused website refresh
+- [x] Reframe homepage copy around daily practice operations and decision moments
+- [x] Add an operations-control section covering access, schedule flow, revenue cycle, and provider productivity
+- [x] Replace abstract supporting content with realistic practice scenarios and visible KPI movement
+- [x] Strengthen What you get and Pricing with operations-led copy and visual consistency
+- [x] Add regression tests and validate (21/21 tests pass; TypeScript clean; checkpoint ready)

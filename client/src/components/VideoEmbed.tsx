@@ -4,16 +4,39 @@ import { useState } from "react";
 interface VideoEmbedProps {
   /** Loom or YouTube embed URL. Leave empty for placeholder state. */
   embedUrl?: string;
+  /** Direct MP4 URL for a browser-native player. */
+  videoUrl?: string;
   title?: string;
   description?: string;
 }
 
 export function VideoEmbed({
   embedUrl,
+  videoUrl,
   title = "See a real briefing, start to finish.",
   description = "Watch a two-minute walkthrough of what arrives in your inbox each month: the executive summary, the scorecard, and the three ranked actions.",
 }: VideoEmbedProps) {
   const [playing, setPlaying] = useState(false);
+
+  if (videoUrl) {
+    return (
+      <figure className="overflow-hidden rounded-2xl border border-primary/15 bg-primary shadow-[0_30px_80px_-24px_oklch(0.339_0.057_244/0.35)]">
+        <video
+          className="block aspect-video w-full bg-primary object-cover"
+          controls
+          playsInline
+          preload="metadata"
+          aria-label={title}
+        >
+          <source src={videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <figcaption className="border-t border-white/10 px-5 py-3 text-sm text-white/70">
+          {description}
+        </figcaption>
+      </figure>
+    );
+  }
 
   if (playing && embedUrl) {
     return (
